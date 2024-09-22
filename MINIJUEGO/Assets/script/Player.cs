@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private float yBorderLimit;
 
     public GameObject gun;
-    public ObjectPool bulletPool; // 引用对象池
+    public ObjectPool bulletPool; 
 
     void Start()
     {
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     {
         Vector3 newPos = transform.position;
 
-        // 边界处理
+       
         if (newPos.x > xBorderLimit)
         {
             newPos.x = -xBorderLimit;
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
 
         transform.position = newPos;
 
-        // 移动和旋转逻辑
+        
         float thrust = Input.GetAxis("Thrust") * Time.deltaTime;
         float rotation = Input.GetAxis("Rotate") + Time.deltaTime;
         Vector3 thrustDirection = transform.right;
@@ -58,10 +58,10 @@ public class Player : MonoBehaviour
         _rigid.AddForce(thrustDirection * thrust * thrustForce);
         transform.Rotate(Vector3.forward, -rotation * rotationSpeed * Time.deltaTime);
 
-        // 子弹发射
+       
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            // 从对象池获取子弹
+            
             GameObject bullet = bulletPool.GetFromPool();
             bullet.transform.position = gun.transform.position;
             Bullet bulletScript = bullet.GetComponent<Bullet>();

@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public GameObject prefab; // 子弹预制体
-    public int poolSize = 10; // 初始池大小
+    public GameObject prefab; 
+    public int poolSize = 10; 
     private List<GameObject> pool;
 
     void Start()
     {
-        // 初始化对象池
+        
         pool = new List<GameObject>();
 
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = Instantiate(prefab);
-            obj.SetActive(false); // 初始时不激活
+            obj.SetActive(false); 
             pool.Add(obj);
         }
     }
 
-    // 从池中获取对象
+  
     public GameObject GetFromPool()
     {
         foreach (GameObject obj in pool)
@@ -32,14 +32,14 @@ public class ObjectPool : MonoBehaviour
             }
         }
 
-        // 如果池中没有可用对象，则创建新的对象并加入池中
+     
         GameObject newObj = Instantiate(prefab);
         newObj.SetActive(true);
         pool.Add(newObj);
         return newObj;
     }
 
-    // 将对象归还到池中
+ 
     public void ReturnToPool(GameObject obj)
     {
         obj.SetActive(false);

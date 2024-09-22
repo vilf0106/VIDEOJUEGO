@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class DestroyOnBulletHit : MonoBehaviour
 {
-    // 引用对象池
+    
     public ObjectPool objectPool;
 
-    private void OnCollisionEnter(Collision collision)  // 使用 OnCollisionEnter 来检测碰撞
+    private void OnCollisionEnter(Collision collision)  
     {
-        if (collision.gameObject.CompareTag("Bullet"))  // 确保检测子弹的标签
+        if (collision.gameObject.CompareTag("Bullet"))  
         {
             Debug.Log("Small fragment hit by bullet, returning to pool.");
             
-            // 将小碎片返回到对象池，而不是销毁
+          
             objectPool.ReturnToPool(gameObject);
         }
     }

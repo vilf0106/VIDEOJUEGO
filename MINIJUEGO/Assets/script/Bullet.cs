@@ -8,13 +8,13 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     public float maxLifeTime = 3f;
     public Vector3 targetVector;
-    private ObjectPool pool; // 引用对象池
+    private ObjectPool pool; 
 
     // Start is called before the first frame update
     void Start()
     {
-        pool = FindObjectOfType<ObjectPool>(); // 查找对象池
-        Invoke("ReturnToPool", maxLifeTime); // 定时回收到对象池
+        pool = FindObjectOfType<ObjectPool>(); 
+        Invoke("ReturnToPool", maxLifeTime); 
     }
 
     // Update is called once per frame
@@ -30,15 +30,15 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             IncreaseScore();
-            Destroy(collision.gameObject); // 销毁敌人
-            ReturnToPool(); // 不销毁子弹，而是回收到对象池
+            Destroy(collision.gameObject); 
+            ReturnToPool(); 
         }
     }
 
-    // 回收子弹到对象池
+    
     private void ReturnToPool()
     {
-        pool.ReturnToPool(gameObject); // 归还到对象池
+        pool.ReturnToPool(gameObject); 
     }
 
     private void IncreaseScore()
